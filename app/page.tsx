@@ -2,7 +2,7 @@
 
 export default function Home() {
   const email = "ali.yaacoobi@gmail.com";
-  const linkedinUrl = "https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE/"; // <-- change this
+  const linkedinUrl = "https://www.linkedin.com/in/aliyaacoobi/"; // 
 
   return (
     <main style={styles.page}>
