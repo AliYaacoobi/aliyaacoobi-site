@@ -1,65 +1,87 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 48,
+        fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 720, width: "100%" }}>
+        <div
+          style={{
+            display: "inline-block",
+            padding: "6px 10px",
+            border: "1px solid rgba(255,255,255,0.15)",
+            borderRadius: 999,
+            fontSize: 12,
+            letterSpacing: 0.6,
+            textTransform: "uppercase",
+          }}
+        >
+          Website under construction
+        </div>
+
+        <h1 style={{ marginTop: 18, fontSize: 48, lineHeight: 1.1 }}>
+          Ali Yaacoobi
+        </h1>
+
+        <p style={{ marginTop: 10, fontSize: 18, opacity: 0.85 }}>
+          Product Manager
+        </p>
+
+        <div
+          style={{
+            marginTop: 28,
+            padding: 18,
+            borderRadius: 14,
+            border: "1px solid rgba(255,255,255,0.12)",
+            background: "rgba(255,255,255,0.03)",
+          }}
+        >
+          <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, opacity: 0.9 }}>
+            <strong>ABOUT ME:</strong> Product Manager focused on building and scaling digital products that connect customers, agents, and businesses. I lead end-to-end product work across consumer purchase funnels, internal platforms, and third-party integrations, driving measurable gains in conversion, retention, and operational efficiency. From 0-to-1 launches to optimizing mature systems, I partner closely with engineering and data to ship solutions that move real business metrics..
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div style={{ marginTop: 28 }}>
+          <p style={{ margin: 0, fontSize: 14, opacity: 0.7 }}>Contact</p>
+          <div style={{ marginTop: 10, display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <a
+              href="mailto:ali.yaacoobi@gmail.com"
+              style={{
+                textDecoration: "none",
+                padding: "10px 14px",
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
+              ali.yaacoobi@gmail.com
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/aliyaacoobi"
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                textDecoration: "none",
+                padding: "10px 14px",
+                borderRadius: 12,
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
-      </main>
-    </div>
+
+        <p style={{ marginTop: 28, fontSize: 12, opacity: 0.55 }}>
+          © {new Date().getFullYear()} Ali Yaacoobi
+        </p>
+      </div>
+    </main>
   );
 }
