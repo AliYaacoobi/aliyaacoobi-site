@@ -1,9 +1,8 @@
-// app/layout.tsx
 import "./globals.css";
 
 export const metadata = {
-  title: "Ali Yaacoobi",
-  description: "Website under construction",
+  title: "Ali Yaacoobi | Portfolio",
+  description: "Product manager portfolio website for Ali Yaacoobi.",
 };
 
 export default function RootLayout({
