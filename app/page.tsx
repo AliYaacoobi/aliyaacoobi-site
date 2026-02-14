@@ -1,4 +1,7 @@
+ "use client";
+
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 const profile = {
   name: "Ali Yaacoobi",
@@ -48,6 +51,59 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const sectionRefs = useRef<{
+    about: HTMLElement | null;
+    work: HTMLElement | null;
+    testimonials: HTMLElement | null;
+  }>({
+    about: null,
+    work: null,
+    testimonials: null,
+  });
+
+  useEffect(() => {
+    const sections = Object.values(sectionRefs.current).filter(Boolean) as HTMLElement[];
+
+    const updateSectionMotion = () => {
+      const viewportHeight = window.innerHeight;
+      const viewportCenter = viewportHeight / 2;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(viewportCenter - sectionCenter);
+        const normalized = Math.min(distance / (viewportHeight * 0.72), 1);
+
+        const scale = 1 - normalized * 0.14;
+        const opacity = 1 - normalized * 0.64;
+        const blur = normalized * 4;
+
+        section.style.setProperty("--section-scale", scale.toFixed(3));
+        section.style.setProperty("--section-opacity", opacity.toFixed(3));
+        section.style.setProperty("--section-blur", `${blur.toFixed(2)}px`);
+      });
+    };
+
+    let rafId = 0;
+    const onScrollOrResize = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        updateSectionMotion();
+        rafId = 0;
+      });
+    };
+
+    updateSectionMotion();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <main>
       <header className="hero" id="top">
@@ -85,38 +141,50 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="section container" id="about">
-        <div className="section-intro">
+      <section className="section" id="about">
+        <div
+          ref={(el) => {
+            sectionRefs.current.about = el;
+          }}
+          className="container scroll-section"
+        >
+          <div className="section-intro">
           <p className="eyebrow">About Me</p>
           <h2>Building products that connect customer value to business results.</h2>
-        </div>
+          </div>
 
-        <div className="about-layout">
-          <Image
-            className="profile-photo"
-            src="/images/LI_PHOTO.jpeg"
-            alt="Ali Yaacoobi profile"
-            width={210}
-            height={210}
-            priority
-          />
-          <div className="about-copy">
-            <p>
-              I&apos;m a product manager focused on digital experiences across customer funnels,
-              internal platforms, and partner integrations. I lead 0-to-1 launches and scale
-              existing systems with measurable impact on conversion, retention, and operational
-              efficiency.
-            </p>
-            <p>
-              I work closely with engineering, design, and data teams to define clear product
-              direction and deliver practical solutions that move real metrics.
-            </p>
+          <div className="about-layout">
+            <Image
+              className="profile-photo"
+              src="/images/LI_PHOTO.jpeg"
+              alt="Ali Yaacoobi profile"
+              width={210}
+              height={210}
+              priority
+            />
+            <div className="about-copy">
+              <p>
+                I&apos;m a product manager focused on digital experiences across customer funnels,
+                internal platforms, and partner integrations. I lead 0-to-1 launches and scale
+                existing systems with measurable impact on conversion, retention, and operational
+                efficiency.
+              </p>
+              <p>
+                I work closely with engineering, design, and data teams to define clear product
+                direction and deliver practical solutions that move real metrics.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="section section-alt" id="work">
-        <div className="container">
+        <div
+          ref={(el) => {
+            sectionRefs.current.work = el;
+          }}
+          className="container scroll-section"
+        >
           <div className="section-intro centered">
             <p className="eyebrow">My Work</p>
             <h2>Selected product work and outcomes.</h2>
@@ -134,19 +202,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section container" id="testimonials">
-        <div className="section-intro centered">
-          <p className="eyebrow">What People Are Saying</p>
-          <h2>Feedback from people I&apos;ve worked with.</h2>
-        </div>
+      <section className="section" id="testimonials">
+        <div
+          ref={(el) => {
+            sectionRefs.current.testimonials = el;
+          }}
+          className="container scroll-section"
+        >
+          <div className="section-intro centered">
+            <p className="eyebrow">What People Are Saying</p>
+            <h2>Feedback from people I&apos;ve worked with.</h2>
+          </div>
 
-        <div className="testimonial-list">
-          {testimonials.map((item) => (
-            <blockquote key={item.author} className="testimonial-card">
-              <p>{item.quote}</p>
-              <cite>{item.author}</cite>
-            </blockquote>
-          ))}
+          <div className="testimonial-list">
+            {testimonials.map((item) => (
+              <blockquote key={item.author} className="testimonial-card">
+                <p>{item.quote}</p>
+                <cite>{item.author}</cite>
+              </blockquote>
+            ))}
+          </div>
         </div>
       </section>
 

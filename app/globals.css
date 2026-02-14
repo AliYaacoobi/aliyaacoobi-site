@@ -213,6 +213,17 @@ a {
   background: var(--black-2);
 }
 
+.scroll-section {
+  --section-scale: 0.9;
+  --section-opacity: 0.4;
+  --section-blur: 3px;
+  transform: translateY(calc((1 - var(--section-scale)) * 40px)) scale(var(--section-scale));
+  transform-origin: center center;
+  opacity: var(--section-opacity);
+  filter: blur(var(--section-blur));
+  will-change: transform, opacity, filter;
+}
+
 .section-intro {
   margin-bottom: 34px;
   text-align: center;
@@ -274,6 +285,7 @@ a {
   border: 1px solid #2d3643;
   padding: 24px;
   box-shadow: 0 14px 24px rgba(0, 0, 0, 0.26);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .project-card h3 {
@@ -293,6 +305,13 @@ a {
   font-weight: 600;
 }
 
+.project-card:hover,
+.project-card:focus-within {
+  transform: scale(1.03);
+  border-color: #4b596c;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.35);
+}
+
 .testimonial-list {
   display: grid;
   gap: 20px;
@@ -305,6 +324,7 @@ a {
   padding: 26px;
   border: 1px solid #2c3541;
   background: #121720;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .testimonial-card p {
@@ -317,6 +337,13 @@ a {
 .testimonial-card cite {
   font-style: normal;
   color: #dfe7f1;
+}
+
+.testimonial-card:hover,
+.testimonial-card:focus-within {
+  transform: scale(1.02);
+  border-color: #4b596c;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.33);
 }
 
 .footer {
@@ -385,5 +412,26 @@ a {
 
   .section {
     padding: 64px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-section {
+    transform: none;
+    opacity: 1;
+    filter: none;
+  }
+
+  .project-card,
+  .testimonial-card {
+    transition: none;
+  }
+
+  .project-card:hover,
+  .project-card:focus-within,
+  .testimonial-card:hover,
+  .testimonial-card:focus-within {
+    transform: none;
+    box-shadow: none;
   }
 }
