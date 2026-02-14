@@ -405,9 +405,37 @@ a {
     font-size: 1rem;
   }
 
+  .hero {
+    min-height: 76vh;
+  }
+
+  .hero-content {
+    padding-top: 4px;
+    padding-bottom: 8px;
+  }
+
   .mountain-art {
-    min-height: 190px;
-    height: 26vh;
+    min-height: 250px;
+    height: 34vh;
+  }
+
+  .mountain-back {
+    bottom: 42%;
+    height: 145px;
+  }
+
+  .mountain-mid {
+    bottom: 28%;
+    height: 175px;
+  }
+
+  .mountain-front {
+    bottom: 14%;
+    height: 190px;
+  }
+
+  .forest {
+    height: 32%;
   }
 
   .section {

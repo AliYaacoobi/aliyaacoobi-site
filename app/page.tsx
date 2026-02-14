@@ -67,6 +67,7 @@ export default function Home() {
     const updateSectionMotion = () => {
       const viewportHeight = window.innerHeight;
       const viewportCenter = viewportHeight / 2;
+      const isMobile = window.innerWidth <= 900;
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
@@ -74,9 +75,9 @@ export default function Home() {
         const distance = Math.abs(viewportCenter - sectionCenter);
         const normalized = Math.min(distance / (viewportHeight * 0.72), 1);
 
-        const scale = 1 - normalized * 0.14;
-        const opacity = 1 - normalized * 0.64;
-        const blur = normalized * 4;
+        const scale = isMobile ? 1 - normalized * 0.05 : 1 - normalized * 0.14;
+        const opacity = isMobile ? 1 - normalized * 0.2 : 1 - normalized * 0.64;
+        const blur = isMobile ? normalized * 0.35 : normalized * 4;
 
         section.style.setProperty("--section-scale", scale.toFixed(3));
         section.style.setProperty("--section-opacity", opacity.toFixed(3));
