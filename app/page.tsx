@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 const profile = {
   name: "Ali Yaacoobi",
   title: "Product Manager & Digital Builder",
-  location: "San Francisco Bay Area",
+  location: "Sacramento",
   email: "ali.yaacoobi@gmail.com",
   linkedin: "https://www.linkedin.com/in/aliyaacoobi/",
 };
